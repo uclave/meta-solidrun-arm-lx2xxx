@@ -90,20 +90,6 @@ jobs:
       - name: Create cache dir
         run: mkdir -p buildcache
 
-      - name: Fetch cache from server
-        uses: tespkg/actions-cache/restore@v1
-        with:
-          endpoint: ciserver.ci
-          port: 9000
-          insecure: true
-          accessKey: ${{ secrets.CI_CACHE_MINIO_ACCESS }}
-          secretKey: ${{ secrets.CI_CACHE_MINIO_SECRET }}
-          bucket: cicache
-          use-fallback: false
-          key: ${{ github.repository }}
-          path: |
-            buildcache
-
       - name: Configure
         shell: bash {0}
         run: |
